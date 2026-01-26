@@ -1,0 +1,3 @@
+building pipeline
+1. create a github repo and clone
+3. add src folder 
