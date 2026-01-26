@@ -86,7 +86,12 @@ def save_data(train_data: pd.DataFrame, test_data: pd.DataFrame, data_path: str)
 
 def main():
     try:
-        test_size = 0.2
+        params = load_params('params.yaml')
+
+        test_size = params['data_ingestion'].get('test_size')
+        if test_size is None:
+            raise KeyError("test_size not found in params.yaml")
+
         data_path = 'https://raw.githubusercontent.com/Muhibalikhan/Datasets/refs/heads/main/spam.csv'
         df = load_data(data_url=data_path)
         final_df = preprocess_data(df)
